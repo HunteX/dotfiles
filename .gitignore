@@ -1,0 +1,13 @@
+# Claude IDE
+.claude/
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+
+# Backup files
+*.bak
+*.backup
+
+# Log files
+*.log

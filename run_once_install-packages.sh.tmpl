@@ -1,0 +1,69 @@
+#!/bin/bash
+# This script runs once to install required packages
+
+set -e
+
+echo "🔧 Installing required packages for HunteX's dotfiles..."
+
+# Check if running on Arch Linux
+if ! command -v pacman &> /dev/null; then
+    echo "⚠️  This script is designed for Arch Linux"
+    exit 0
+fi
+
+# Install pacman packages
+PACMAN_PACKAGES=(
+    # Hyprland ecosystem
+    hyprland
+
+    # Terminals
+    kitty
+
+    # Shell
+    starship
+
+    # Fonts
+    ttf-hack-nerd
+)
+
+echo "📦 Installing pacman packages..."
+for package in "${PACMAN_PACKAGES[@]}"; do
+    if ! pacman -Qi "$package" &> /dev/null; then
+        echo "  Installing $package..."
+        sudo pacman -S --noconfirm "$package" || echo "  ⚠️  Failed to install $package"
+    else
+        echo "  ✓ $package already installed"
+    fi
+done
+
+# Check if yay is installed
+if ! command -v yay &> /dev/null; then
+    echo "📦 Installing yay (AUR helper)..."
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay
+    makepkg -si --noconfirm
+    cd -
+    rm -rf /tmp/yay
+fi
+
+# Install AUR packages
+AUR_PACKAGES=(
+    # Theming
+    matugen-bin
+)
+
+echo "📦 Installing AUR packages..."
+for package in "${AUR_PACKAGES[@]}"; do
+    if ! pacman -Qi "$package" &> /dev/null; then
+        echo "  Installing $package..."
+        yay -S --noconfirm "$package" || echo "  ⚠️  Failed to install $package"
+    else
+        echo "  ✓ $package already installed"
+    fi
+done
+
+echo "✅ Package installation complete!"
+echo ""
+echo "📝 Next steps:"
+echo "   1. Install Ax-Shell: curl -fsSL get.axeni.de/ax-shell | bash"
+echo "   2. Apply dotfiles: chezmoi apply"

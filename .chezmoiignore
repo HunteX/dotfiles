@@ -1,0 +1,32 @@
+# Ignore these files/directories when applying dotfiles
+
+# Ax-Shell - only keep config directory, ignore the rest
+.config/Ax-Shell/**
+!.config/Ax-Shell/config/**
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+
+# Backup files
+**/*.bak
+**/*.backup
+
+# Log files
+**/*.log
+
+# Cache directories
+.config/Ax-Shell/cache/**
+
+# Fish shell generated files
+.config/fish/fish_variables
+
+# Oh My Zsh - ignore everything except custom
+.oh-my-zsh/**
+!.oh-my-zsh/custom/**
+
+# Warp terminal - ignore launch configs
+.config/warp-terminal/launch_configurations/**
+
+# Claude IDE files
+.claude/**
