@@ -78,6 +78,11 @@ for package in "${AUR_PACKAGES[@]}"; do
     fi
 done
 
+# Enable SDDM and set graphical target
+echo "🔧 Enabling SDDM and setting graphical target..."
+sudo systemctl enable sddm.service
+sudo systemctl set-default graphical.target
+
 echo "✅ Package installation complete!"
 echo ""
 echo "📝 Next steps:"
