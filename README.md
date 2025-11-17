@@ -31,14 +31,13 @@ sudo pacman -S git chezmoi
 
 ```bash
 # Initialize and apply dotfiles (will auto-install packages)
-chezmoi init --apply https://github.com/HunteX/dotfiles.git
-
-# Or step by step
 chezmoi init https://github.com/HunteX/dotfiles.git
-chezmoi apply  # This will run package installation script
 
 # Install Ax-Shell
 curl -fsSL get.axeni.de/ax-shell | bash
+
+# This will run package installation script
+chezmoi apply
 ```
 
 The first `chezmoi apply` will automatically:
