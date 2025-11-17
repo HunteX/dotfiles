@@ -12,12 +12,22 @@ if ! command -v pacman &> /dev/null; then
 fi
 
 # Install pacman packages
+# Add Warp Terminal repository
+if ! grep -q '\[warpdotdev\]' /etc/pacman.conf; then
+    echo "📦 Adding Warp Terminal repository..."
+    sudo sh -c "echo -e '\n[warpdotdev]\nServer = https://releases.warp.dev/linux/pacman/\$repo/\$arch' >> /etc/pacman.conf"
+    sudo pacman-key -r "linux-maintainers@warp.dev" 2>/dev/null || true
+    sudo pacman-key --lsign-key "linux-maintainers@warp.dev" 2>/dev/null || true
+    sudo pacman -Sy
+fi
+
 PACMAN_PACKAGES=(
     # Hyprland ecosystem
     hyprland
 
     # Terminals
     kitty
+    warp-terminal
 
     # Shell
     starship
