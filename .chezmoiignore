@@ -3,7 +3,7 @@
 # Ax-Shell - only keep config directory, ignore the rest
 .config/Ax-Shell/**
 !.config/Ax-Shell/config/**
-!.config/Ax-Shell/config/assets/wallpapers_example/**
+!.config/Ax-Shell/assets/wallpapers_example/**
 
 # Python cache
 **/__pycache__/
