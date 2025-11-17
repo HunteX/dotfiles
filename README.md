@@ -22,7 +22,7 @@ Just install chezmoi - everything else will be installed automatically!
 
 ```bash
 # Install chezmoi
-sudo pacman -S chezmoi
+sudo pacman -S git chezmoi
 ```
 
 ## Installation
